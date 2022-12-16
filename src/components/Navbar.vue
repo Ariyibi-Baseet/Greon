@@ -32,19 +32,32 @@ export default {
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">About</a>
+            <router-link class="nav-link" to="/about">About</router-link>
+            <!-- <a class="nav-link" href="/about">About</a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Service</a>
+            <router-link class="nav-link" to="/service">Service</router-link>
+            <!-- <a class="nav-link" href="/service">Service</a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/breeds">Breeds</a>
+            <router-link class="nav-link" to="/breeds">Breeds</router-link>
+            <!-- <a class="nav-link" href="/breeds">Breeds</a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/calculator">Calculator</a>
+            <router-link class="nav-link" to="/calculator">Calculator</router-link>
+            <!-- <a class="nav-link" href="/calculator">Calculator</a> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <router-link class="nav-link" to="/contact">Contact</router-link>
+            <!-- <a class="nav-link" href="/contact">Contact</a> -->
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/register">Register</router-link>
+            <!-- <a class="nav-link" href="/register">Register</a> -->
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/login">Login</router-link>
+            <!-- <a class="nav-link" href="/login">Register</a> -->
           </li>
         </ul>
       </div>
@@ -61,7 +74,7 @@ export default {
   background: var(--gradient);
   border-radius: 20px;
   margin: 10px 10px 0;
-  font-family: "Chivo", sans-serif;
+  font-family: var(--ff-chivo);
 }
 .active {
   font-weight: bold;

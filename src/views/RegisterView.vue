@@ -4,7 +4,8 @@
     <div class="row">
       <div class="col-md-4 mx-auto mt-5 mb-3">
         <form method="post">
-          <div class="mb-3">
+          <h5 class="register">Register</h5>
+          <div class="mb-3 mt-3">
             <label for="" class="form-label">First Name</label>
             <input
               type="email"
@@ -106,6 +107,9 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
 }
+.register {
+  color: #9efd38;
+}
 label {
   color: rgb(215, 208, 208);
 }
@@ -125,8 +129,10 @@ button {
   color: #fff;
   text-shadow: 2px 3px 5px gray;
 }
-.login-link,
-.back-home-link {
+.login-link {
   color: rgb(215, 208, 208);
+}
+.back-home-link {
+  color: #9efd38;
 }
 </style>

@@ -1,14 +1,11 @@
 <script>
-import NavigationBar from "@/components/Navbar.vue";
-
 export default {
   name: "App",
-  components: { NavigationBar },
 };
 </script>
 
 <template>
-  <NavigationBar />
+  <router-view />
 </template>
 
 <style>
@@ -16,8 +13,12 @@ export default {
   /* COLORS */
   /* primary */
   --dark: #333 !important;
+  --grayish: rgb(85, 83, 83) !important;
   --green: #6ff01a !important;
   --lime: #32cd32 !important;
+
+  /* fonts */
+  --ff-chivo: "Chivo", sans-serif;
 
   /* gradients */
   --moz-gradient: -moz-linear-gradient(88deg, #9efd38 12%, #2ba72b 48%);

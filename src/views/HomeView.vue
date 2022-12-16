@@ -1,7 +1,13 @@
 <template>
-  <div></div>
+  <NavigationBar />
+  <FooterSection />
 </template>
 
 <script>
-export default {};
+import NavigationBar from "@/components/Navbar.vue";
+import FooterSection from "@/components/Footer.vue";
+export default {
+  name: "HomeView",
+  components: { NavigationBar, FooterSection },
+};
 </script>

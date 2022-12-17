@@ -8,9 +8,8 @@
           <div class="mb-3 mt-3">
             <label for="" class="form-label">First Name</label>
             <input
-              type="email"
+              type="text"
               class="form-control shadow-none"
-              id=""
               v-model="formData.first_name"
             />
           </div>
@@ -19,7 +18,6 @@
             <input
               type="text"
               class="form-control shadow-none"
-              id=""
               v-model="formData.last_name"
             />
           </div>
@@ -28,7 +26,6 @@
             <input
               type="email"
               class="form-control shadow-none"
-              id=""
               v-model="formData.email"
             />
           </div>
@@ -37,7 +34,6 @@
             <input
               type="password"
               class="form-control shadow-none"
-              id=""
               v-model="formData.password"
             />
           </div>
@@ -46,7 +42,6 @@
             <input
               type="password"
               class="form-control shadow-none"
-              id=""
               v-model="formData.password_confirmation"
             />
           </div>
@@ -66,6 +61,31 @@
         </form>
       </div>
     </div>
+
+    <!-- Toast to print errors -->
+    <div v-if="errorMessage">
+      <div v-for="error in errorMessage" :key="error">
+        <div
+          class="toast position-fixed"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="toast-header">
+            <img src="" class="rounded me-2" alt="" />
+            <strong class="me-auto text-white">Validation Error</strong>
+            <small class="text-white">5 sec ago</small>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body text-white mb-2">{{ error }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -83,6 +103,7 @@ export default {
         password: "",
         password_confirmation: "",
       },
+      errorMessage: "",
       api_url: "https://event-api.mockup.com.ng/api/register",
     };
   },
@@ -90,11 +111,14 @@ export default {
     registerForm() {
       axios
         .post(this.api_url, this.formData)
-        .then(function (response) {
+        .then((response) => {
           console.log(response.status);
         })
-        .catch(function (error) {
-          console.log(error);
+        .catch((error) => {
+          if (error.response.status === 422) {
+            this.errorMessage = error.response.data.message;
+            console.log(this.errorMessage);
+          }
         });
     },
   },
@@ -134,5 +158,16 @@ button {
 }
 .back-home-link {
   color: #9efd38;
+}
+.toast {
+  display: block;
+  right: 4px;
+  top: 100px;
+}
+.toast-header {
+  background-color: rgb(221, 37, 37);
+}
+.toast-body {
+  background-color: rgb(227, 55, 55);
 }
 </style>

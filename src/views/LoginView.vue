@@ -1,19 +1,10 @@
 <template>
-  <!-- <p class="text-center text-white">You gat to register first before moving on...</p>
-
-  <form class="mt-5" method="post">
-    <input type="text" placeholder="Email address" v-model="formData.email" />
-    <br />
-    <input type="text" placeholder="Password" v-model="formData.password" />
-    <br />
-    <button type="button" @click="loginForm()">Register Me!</button>
-  </form> -->
   <div class="container p-5">
     <div class="row">
       <h3 class="text-white text-center">
         Sign In Here to Proceed to Our
         <br />
-        Awesome Rabbit 🐇 Dashboard
+        Awesome Rabbit 🐇 Dashboard <i class="bi bi-speedometer2"></i>
       </h3>
       <div class="col-md-4 mx-auto">
         <form method="post" class="mt-5 p-3">
@@ -30,7 +21,7 @@
           <div class="mb-3">
             <label for="" class="form-label">Password</label>
             <input
-              type="text"
+              type="password"
               class="form-control shadow-none"
               id=""
               v-model="formData.password"
@@ -51,6 +42,30 @@
           </p>
         </form>
       </div>
+
+      <div v-if="errorMessage">
+        <div v-for="error in errorMessage" :key="error">
+          <div
+            class="toast position-fixed"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div class="toast-header">
+              <img src="" class="rounded me-2" alt="" />
+              <strong class="me-auto text-white">Validation Error</strong>
+              <small class="text-white">5 sec ago</small>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="toast"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="toast-body text-white mb-2">{{ error }}</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -67,20 +82,24 @@ export default {
         password: "",
       },
       api_url: "https://event-api.mockup.com.ng/api/signin",
+      errorMessage: "",
     };
   },
   methods: {
     loginForm() {
       axios
         .post(this.api_url, this.formData)
-        .then(function (response) {
+        .then((response) => {
           console.log(response.status);
-          console.log("Login successfully!!!");
-          //   router.push({ name: "home" });
+          console.log("Login Successfully");
           window.location.href = "/";
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
+          if (error.response.status === 401) {
+            this.errorMessage = error.response.data.errors;
+            console.log(this.errorMessage);
+          }
         });
     },
   },

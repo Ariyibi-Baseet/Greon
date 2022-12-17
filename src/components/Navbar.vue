@@ -93,6 +93,7 @@ export default {
 }
 .navbar-brand {
   color: var(--dark);
+  color: #333;
   font-variant: small-caps;
 }
 .nav-link {

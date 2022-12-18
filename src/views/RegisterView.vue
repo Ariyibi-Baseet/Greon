@@ -62,28 +62,49 @@
       </div>
     </div>
 
+    <!-- Toast to success errors -->
+    <div v-if="successMessage">
+      <div
+        class="toast position-fixed"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header success-header">
+          <img src="" class="rounded me-2" alt="" />
+          <strong class="me-auto text-white">Validation Error</strong>
+          <small class="text-white">5 sec ago</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body text-white success-body">{{ successMessage }}</div>
+      </div>
+    </div>
+
     <!-- Toast to print errors -->
     <div v-if="errorMessage">
-      <div v-for="error in errorMessage" :key="error">
-        <div
-          class="toast position-fixed"
-          role="alert"
-          aria-live="assertive"
-          aria-atomic="true"
-        >
-          <div class="toast-header">
-            <img src="" class="rounded me-2" alt="" />
-            <strong class="me-auto text-white">Validation Error</strong>
-            <small class="text-white">5 sec ago</small>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="toast"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="toast-body text-white mb-2">{{ error }}</div>
+      <div
+        class="toast position-fixed"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header error-header">
+          <img src="" class="rounded me-2" alt="" />
+          <strong class="me-auto text-white">Validation Error</strong>
+          <small class="text-white">5 sec ago</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
         </div>
+        <div class="toast-body error-body text-white">{{ errorMessage }}</div>
       </div>
     </div>
   </div>
@@ -104,6 +125,7 @@ export default {
         password_confirmation: "",
       },
       errorMessage: "",
+      successMessage: "",
       api_url: "https://event-api.mockup.com.ng/api/register",
     };
   },
@@ -113,11 +135,14 @@ export default {
         .post(this.api_url, this.formData)
         .then((response) => {
           console.log(response.status);
+          if (response.status === 201) {
+            this.successMessage = response.data.message;
+            window.location.href = "/";
+          }
         })
         .catch((error) => {
           if (error.response.status === 422) {
             this.errorMessage = error.response.data.message;
-            console.log(this.errorMessage);
           }
         });
     },
@@ -164,10 +189,17 @@ button {
   right: 4px;
   top: 100px;
 }
-.toast-header {
+.error-header {
   background-color: rgb(221, 37, 37);
 }
-.toast-body {
+.error-body {
   background-color: rgb(227, 55, 55);
+}
+
+.success-header {
+  background-color: #2ba72b;
+}
+.success-body {
+  background-color: #9efd38;
 }
 </style>

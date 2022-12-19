@@ -1,68 +1,70 @@
 <template>
-  <div class="container p-5">
-    <div class="row">
-      <h3 class="text-white text-center">
-        Sign In Here to Proceed to Our
-        <br />
-        Awesome Rabbit 🐇 Dashboard <i class="bi bi-speedometer2"></i>
-      </h3>
-      <div class="col-md-4 mx-auto">
-        <form method="post" class="mt-5 p-3">
-          <h5 class="sign-in">Sign In</h5>
-          <div class="mb-3 mt-3">
-            <label for="" class="form-label">Email Address</label>
-            <input
-              type="email"
-              class="form-control shadow-none"
-              id=""
-              v-model="formData.email"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Password</label>
-            <input
-              type="password"
-              class="form-control shadow-none"
-              id=""
-              v-model="formData.password"
-            />
-          </div>
-          <button type="button" class="btn btn-block" @click="loginForm()">
-            Got Me In
-          </button>
-          <span>
-            <router-link to="/register" class="login-link ms-3"
-              >Register Here &nbsp;<i class="bi bi-arrow-right"></i
-            ></router-link>
-          </span>
-          <p class="mt-3 text-center">
-            <router-link to="/" class="back-home-link"
-              ><i class="bi bi-arrow-left"></i> &nbsp;Go back Home</router-link
-            >
-          </p>
-        </form>
-      </div>
-
-      <div v-if="errorMessage">
-        <div v-for="error in errorMessage" :key="error">
-          <div
-            class="toast position-fixed"
-            role="alert"
-            aria-live="assertive"
-            aria-atomic="true"
-          >
-            <div class="toast-header">
-              <img src="" class="rounded me-2" alt="" />
-              <strong class="me-auto text-white">Validation Error</strong>
-              <small class="text-white">5 sec ago</small>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="toast"
-                aria-label="Close"
-              ></button>
+  <div class="sign-in-area">
+    <div class="container p-5">
+      <div class="row">
+        <h3 class="text-white text-center">
+          Sign In Here to Proceed to Our
+          <br />
+          Awesome Rabbit 🐇 Dashboard <i class="bi bi-speedometer2"></i>
+        </h3>
+        <div class="col-md-4 mx-auto">
+          <form method="post" class="mt-5 p-3">
+            <h5 class="sign-in">Sign In</h5>
+            <div class="mb-3 mt-3">
+              <label for="" class="form-label">Email Address</label>
+              <input
+                type="email"
+                class="form-control shadow-none"
+                id=""
+                v-model="formData.email"
+              />
             </div>
-            <div class="toast-body text-white mb-2">{{ error }}</div>
+            <div class="mb-3">
+              <label for="" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control shadow-none"
+                id=""
+                v-model="formData.password"
+              />
+            </div>
+            <button type="button" class="btn btn-block" @click="loginForm()">
+              Got Me In
+            </button>
+            <span>
+              <router-link to="/register" class="login-link ms-3"
+                >Register Here &nbsp;<i class="bi bi-arrow-right"></i
+              ></router-link>
+            </span>
+            <p class="mt-3 text-center">
+              <router-link to="/" class="back-home-link"
+                ><i class="bi bi-arrow-left"></i> &nbsp;Go back Home</router-link
+              >
+            </p>
+          </form>
+        </div>
+
+        <div v-if="errorMessage">
+          <div v-for="error in errorMessage" :key="error">
+            <div
+              class="toast position-fixed"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+            >
+              <div class="toast-header">
+                <img src="" class="rounded me-2" alt="" />
+                <strong class="me-auto text-white">Validation Error</strong>
+                <small class="text-white">5 sec ago</small>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="toast"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="toast-body text-white mb-2">{{ error }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -111,6 +113,11 @@ export default {
   font-family: var(--ff-chivo);
   text-decoration: none;
   box-sizing: border-box;
+}
+.sign-in-area {
+  background-color: var(--phthalo-green) !important;
+  background-color: #333;
+  min-height: 100vh;
 }
 .sign-in {
   color: #9efd38;

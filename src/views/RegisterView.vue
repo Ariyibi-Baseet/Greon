@@ -1,110 +1,112 @@
 <template>
-  <div class="container p-5">
-    <h2 class="text-center text-white">Join Us today to Enjoy Rabbits 🐇 Benefits</h2>
-    <div class="row">
-      <div class="col-md-4 mx-auto mt-5 mb-3">
-        <form method="post">
-          <h5 class="register">Register</h5>
-          <div class="mb-3 mt-3">
-            <label for="" class="form-label">First Name</label>
-            <input
-              type="text"
-              class="form-control shadow-none"
-              v-model="formData.first_name"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Last Name</label>
-            <input
-              type="text"
-              class="form-control shadow-none"
-              v-model="formData.last_name"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Email Address</label>
-            <input
-              type="email"
-              class="form-control shadow-none"
-              v-model="formData.email"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Password</label>
-            <input
-              type="password"
-              class="form-control shadow-none"
-              v-model="formData.password"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="" class="form-label">Confirm Password</label>
-            <input
-              type="password"
-              class="form-control shadow-none"
-              v-model="formData.password_confirmation"
-            />
-          </div>
-          <button type="button" class="btn btn-block" @click="registerForm()">
-            Got Me Registered
-          </button>
-          <span>
-            <router-link to="/login" class="login-link ms-3"
-              >Login Here &nbsp;<i class="bi bi-arrow-right"></i
-            ></router-link>
-          </span>
-          <p class="mt-3 text-center">
-            <router-link to="/" class="back-home-link"
-              ><i class="bi bi-arrow-left"></i> &nbsp;Go back Home</router-link
-            >
-          </p>
-        </form>
-      </div>
-    </div>
-
-    <!-- Toast to success errors -->
-    <div v-if="successMessage">
-      <div
-        class="toast position-fixed"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div class="toast-header success-header">
-          <img src="" class="rounded me-2" alt="" />
-          <strong class="me-auto text-white">Validation Error</strong>
-          <small class="text-white">5 sec ago</small>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
+  <div class="register-area">
+    <div class="container p-5">
+      <h2 class="text-center text-white">Join Us today to Enjoy Rabbits 🐇 Benefits</h2>
+      <div class="row">
+        <div class="col-md-4 mx-auto mt-5 mb-3">
+          <form method="post">
+            <h5 class="register">Register</h5>
+            <div class="mb-3 mt-3">
+              <label for="" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control shadow-none"
+                v-model="formData.first_name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control shadow-none"
+                v-model="formData.last_name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Email Address</label>
+              <input
+                type="email"
+                class="form-control shadow-none"
+                v-model="formData.email"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control shadow-none"
+                v-model="formData.password"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Confirm Password</label>
+              <input
+                type="password"
+                class="form-control shadow-none"
+                v-model="formData.password_confirmation"
+              />
+            </div>
+            <button type="button" class="btn btn-block" @click="registerForm()">
+              Got Me Registered
+            </button>
+            <span>
+              <router-link to="/login" class="login-link ms-3"
+                >Login Here &nbsp;<i class="bi bi-arrow-right"></i
+              ></router-link>
+            </span>
+            <p class="mt-3 text-center">
+              <router-link to="/" class="back-home-link"
+                ><i class="bi bi-arrow-left"></i> &nbsp;Go back Home</router-link
+              >
+            </p>
+          </form>
         </div>
-        <div class="toast-body text-white success-body">{{ successMessage }}</div>
       </div>
-    </div>
 
-    <!-- Toast to print errors -->
-    <div v-if="errorMessage">
-      <div
-        class="toast position-fixed"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div class="toast-header error-header">
-          <img src="" class="rounded me-2" alt="" />
-          <strong class="me-auto text-white">Validation Error</strong>
-          <small class="text-white">5 sec ago</small>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
+      <!-- Toast to success errors -->
+      <div v-if="successMessage">
+        <div
+          class="toast position-fixed"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="toast-header success-header">
+            <img src="" class="rounded me-2" alt="" />
+            <strong class="me-auto text-white">Validation Error</strong>
+            <small class="text-white">5 sec ago</small>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body text-white success-body">{{ successMessage }}</div>
         </div>
-        <div class="toast-body error-body text-white">{{ errorMessage }}</div>
+      </div>
+
+      <!-- Toast to print errors -->
+      <div v-if="errorMessage">
+        <div
+          class="toast position-fixed"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="toast-header error-header">
+            <img src="" class="rounded me-2" alt="" />
+            <strong class="me-auto text-white">Validation Error</strong>
+            <small class="text-white">5 sec ago</small>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body error-body text-white">{{ errorMessage }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -155,6 +157,11 @@ export default {
   font-family: var(--ff-chivo);
   text-decoration: none;
   box-sizing: border-box;
+}
+
+.register-area {
+  background-color: var(--phthalo-green) !important;
+  background-color: #333;
 }
 .register {
   color: #9efd38;

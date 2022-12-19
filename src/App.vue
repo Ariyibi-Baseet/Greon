@@ -20,18 +20,12 @@ export default {
   /* fonts */
   --ff-chivo: "Chivo", sans-serif;
 
-  /* gradients */
-  --moz-gradient: -moz-linear-gradient(88deg, #9efd38 12%, #2ba72b 48%);
-  --webkit-gradient: -webkit-linear-gradient(88deg, #9efd38 12%, #2ba72b 48%);
-  --o-gradient: -o-linear-gradient(88deg, #9efd38 12%, #2ba72b 48%);
-  --ms-gradient: -ms-linear-gradient(88deg, #9efd38 12%, #2ba72b 48%);
-  --gradient: linear-gradient(88deg, #9efd38 12%, #2ba72b 48%);
-
-  --rwd-moz-gradient: -moz-linear-gradient(90deg, #2ba72b 31%, #9efd38 55%);
-  --rwd-webkit-gradient: -webkit-linear-gradient(90deg, #2ba72b 31%, #9efd38 55%);
-  --rwd-o-gradient: -o-linear-gradient(90deg, #2ba72b 31%, #9efd38 55%);
-  --rwd-ms-gradient: -ms-linear-gradient(90deg, #2ba72b 31%, #9efd38 55%);
-  --rwd-gradient: linear-gradient(90deg, #2ba72b 31%, #9efd38 55%);
+  --phthalo-green: #163a24;
+  --salle-green: #15762e;
+  --japanese-laurel: #1f7a36;
+  --pomona-green: #194429;
+  --orange-yellow: #f7bc28;
+  --orange: #e48929;
 }
 *,
 *::before,
@@ -43,6 +37,8 @@ export default {
   box-sizing: border-box;
 }
 body {
-  background-color: var(--dark);
+  background-color: rgb(223, 207, 207);
+  background-color: rgb(121, 117, 117);
+  /* background-color: var(--pomona-green); */
 }
 </style>

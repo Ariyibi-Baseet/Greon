@@ -15,14 +15,14 @@ export default {
           <h2 class="fs-4 fw-bold">
             <a href="#" class="navbar-brand">GREON</a>
           </h2>
-          <p>
+          <p class="text-white">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet mollitia
             praesentium nulla omnis iusto aspernatur sit
           </p>
         </div>
-        <div class="col-md-3 mb-3">
-          <h2 class="fs-5 ms-4 fw-bold">Quick Links</h2>
-          <ul class="list-group ms-4 mt-3">
+        <div class="col-md-3 mb-3 p-0">
+          <h2 class="fs-5 ms-2 fw-bold footer-head">Quick Links</h2>
+          <ul class="list-group ms-2 mt-3">
             <li class="ms-4 text-white">
               <font-awesome-icon icon="fa-solid fa-angle-right" />&nbsp;
               <!-- <a href="/" class="text-decoration-none text-white">Home</a> -->
@@ -70,13 +70,13 @@ export default {
               <router-link class="text-decoration-none text-white" to="/register"
                 >Register</router-link
               >
-              <a href="/register" class="text-decoration-none text-white">Register</a>
+              <!-- <a href="/register" class="text-decoration-none text-white">Register</a> -->
             </li>
           </ul>
         </div>
-        <div class="col-md-6 mb-3">
-          <h2 class="fs-5 ms-4 fw-bold">Rabbit Top Articles</h2>
-          <ul class="list-group ms-4 mt-3">
+        <div class="col-md-6 mb-3 p-0">
+          <h2 class="fs-5 ms-2 fw-bold footer-head">Rabbit Top Articles</h2>
+          <ul class="list-group ms-2 mt-3">
             <li class="ms-4 text-white">
               <font-awesome-icon icon="fa-solid fa-angle-right" />&nbsp;
               <a href="#" class="text-decoration-none text-white"
@@ -129,22 +129,16 @@ export default {
 
 <style scoped>
 footer {
-  background: var(--moz-gradient);
-  background: var(--webkit-gradient);
-  background: var(--o-gradient);
-  background: var(--ms-gradient);
-  background: var(--gradient);
+  background: var(--phthalo-green);
   border-radius: 20px;
   margin: 10px 10px 0;
   font-family: var(--ff-chivo);
 }
-@media screen and (max-width: 767px) {
-  footer {
-    background: var(--rwd-moz-gradient);
-    background: var(--rwd-webkit-gradient);
-    background: var(--rwd-o-gradient);
-    background: var(--rwd-ms-gradient);
-    background: var(--rwd-gradient);
-  }
+.navbar-brand {
+  font-variant: small-caps;
+  color: #fff;
+}
+.footer-head {
+  color: #fff;
 }
 </style>

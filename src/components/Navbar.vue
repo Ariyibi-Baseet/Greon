@@ -67,38 +67,23 @@ export default {
 
 <style scoped>
 .navbar {
-  background: var(--moz-gradient);
-  background: var(--webkit-gradient);
-  background: var(--o-gradient);
-  background: var(--ms-gradient);
-  background: var(--gradient);
+  background: var(--phthalo-green);
   border-radius: 20px;
   margin: 10px 10px 0;
   font-family: var(--ff-chivo);
 }
 .active {
-  font-weight: bold;
+  /* font-weight: bold; */
+  color: var(--orange-yellow) !important;
 }
-@media screen and (max-width: 767px) {
-  .navbar {
-    background: var(--rwd-moz-gradient);
-    background: var(--rwd-webkit-gradient);
-    background: var(--rwd-o-gradient);
-    background: var(--rwd-ms-gradient);
-    background: var(--rwd-gradient);
-  }
-  .navbar-toggler {
-    background-color: #2ba72b;
-  }
+.navbar-toggler {
+  background-color: #2ba72b;
 }
 .navbar-brand {
-  color: var(--dark);
-  color: #333;
+  color: #fff;
   font-variant: small-caps;
 }
 .nav-link {
   color: #fff;
-  /* font-weight: bold; */
-  /* letter-spacing: 1px; */
 }
 </style>

@@ -62,58 +62,13 @@
           </form>
         </div>
       </div>
-
-      <!-- Toast to success errors -->
-      <div v-if="successMessage">
-        <div
-          class="toast position-fixed"
-          role="alert"
-          aria-live="assertive"
-          aria-atomic="true"
-        >
-          <div class="toast-header success-header">
-            <img src="" class="rounded me-2" alt="" />
-            <strong class="me-auto text-white">Validation Error</strong>
-            <small class="text-white">5 sec ago</small>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="toast"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="toast-body text-white success-body">{{ successMessage }}</div>
-        </div>
-      </div>
-
-      <!-- Toast to print errors -->
-      <div v-if="errorMessage">
-        <div
-          class="toast position-fixed"
-          role="alert"
-          aria-live="assertive"
-          aria-atomic="true"
-        >
-          <div class="toast-header error-header">
-            <img src="" class="rounded me-2" alt="" />
-            <strong class="me-auto text-white">Validation Error</strong>
-            <small class="text-white">5 sec ago</small>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="toast"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="toast-body error-body text-white">{{ errorMessage }}</div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "RegisterView",
@@ -131,6 +86,10 @@ export default {
       api_url: "https://event-api.mockup.com.ng/api/register",
     };
   },
+  setup() {
+    const toastBox = useToast();
+    return { toastBox };
+  },
   methods: {
     registerForm() {
       axios
@@ -138,13 +97,14 @@ export default {
         .then((response) => {
           console.log(response.status);
           if (response.status === 201) {
-            this.successMessage = response.data.message;
+            this.toastBox.info("User Registered Successfully!!!");
             window.location.href = "/";
           }
         })
         .catch((error) => {
           if (error.response.status === 422) {
             this.errorMessage = error.response.data.message;
+            this.toastBox.error(this.errorMessage);
           }
         });
     },

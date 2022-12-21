@@ -43,30 +43,6 @@
             </p>
           </form>
         </div>
-
-        <div v-if="errorMessage">
-          <div v-for="error in errorMessage" :key="error">
-            <div
-              class="toast position-fixed"
-              role="alert"
-              aria-live="assertive"
-              aria-atomic="true"
-            >
-              <div class="toast-header">
-                <img src="" class="rounded me-2" alt="" />
-                <strong class="me-auto text-white">Validation Error</strong>
-                <small class="text-white">5 sec ago</small>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="toast"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="toast-body text-white mb-2">{{ error }}</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -74,6 +50,7 @@
 
 <script>
 import axios from "axios";
+import { useToast } from "vue-toastification";
 
 export default {
   name: "LoginView",
@@ -87,20 +64,24 @@ export default {
       errorMessage: "",
     };
   },
+  setup() {
+    const toastBox = useToast();
+    return { toastBox };
+  },
   methods: {
     loginForm() {
       axios
         .post(this.api_url, this.formData)
         .then((response) => {
           console.log(response.status);
-          console.log("Login Successfully");
+          this.toastBox.info("Login Successfully! Proceed to Dashboard");
           window.location.href = "/";
         })
         .catch((error) => {
           console.log(error);
           if (error.response.status === 401) {
-            this.errorMessage = error.response.data.errors;
-            console.log(this.errorMessage);
+            this.errorMessage = error.response.data.message;
+            this.toastBox.error(this.errorMessage + " Check your username and password");
           }
         });
     },

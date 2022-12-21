@@ -7,6 +7,7 @@ import BreedsView from '../views/BreedsView.vue'
 import CalculatorView from '../views/CalculatorView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
+import NotFoundView from '../views/NotFoundView.vue'
 
 const routes = [
   {
@@ -48,7 +49,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView
-  }
+  },
+  {
+    path: '/:pathMatch(.*)',
+    name: 'NotFoundView',
+    component: NotFoundView
+  },
 ]
 
 const router = createRouter({

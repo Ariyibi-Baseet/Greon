@@ -39,6 +39,5 @@ export default {
 body {
   background-color: rgb(223, 207, 207);
   background-color: rgb(121, 117, 117);
-  /* background-color: var(--pomona-green); */
 }
 </style>

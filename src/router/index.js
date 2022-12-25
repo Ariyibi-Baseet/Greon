@@ -4,7 +4,7 @@ import AboutView from '../views/AboutView.vue'
 import ContactView from '../views/ContactView.vue'
 import ServiceView from '../views/ServiceView.vue'
 import BreedsView from '../views/BreedsView.vue'
-import CalculatorView from '../views/CalculatorView.vue'
+import ReminderView from '../views/ReminderView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import LoginView from '../views/LoginView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
@@ -36,9 +36,9 @@ const routes = [
     component: BreedsView
   },
   {
-    path: '/calculator',
-    name: 'calculator',
-    component:CalculatorView
+    path: '/reminder',
+    name: 'reminder',
+    component:ReminderView
   },
   {
     path: '/register',

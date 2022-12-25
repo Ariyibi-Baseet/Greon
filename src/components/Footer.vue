@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <footer class="pt-4 pb-2">
+  <footer class="pt-4 pb-2 mb-3">
     <div class="container">
       <div class="row">
         <div class="col-md-3 mb-3">
@@ -53,8 +53,8 @@ export default {
             </li>
             <li class="ms-4 mt-2 text-white">
               <font-awesome-icon icon="fa-solid fa-angle-right" />&nbsp;
-              <router-link class="text-decoration-none text-white" to="/calculator"
-                >Calculator</router-link
+              <router-link class="text-decoration-none text-white" to="/reminder"
+                >Reminder</router-link
               >
               <!-- <a href="/calculator" class="text-decoration-none text-white">Calculator</a> -->
             </li>

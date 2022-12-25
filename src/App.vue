@@ -40,4 +40,7 @@ body {
   background-color: rgb(223, 207, 207);
   background-color: rgb(121, 117, 117);
 }
+section {
+  min-height: 50vh;
+}
 </style>

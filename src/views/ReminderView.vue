@@ -42,32 +42,98 @@
             <div class="reminder-wrapper mt-5">
               <form method="post">
                 <div class="mb-3">
-                  <label for="" class="form-label">Rabbit Name</label>
+                  <label for="" class="form-label text-white">Rabbit Name</label>
                   <input
                     type="text"
                     class="form-control shadow-none"
                     id=""
+                    v-model="reminderDetails.rabbitName"
                     placeholder="Rabbit pet name"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="" class="form-label">Rabbit Image</label>
-                  <input type="file" class="form-control shadow-none" id="" />
+                  <label for="" class="form-label text-white">Rabbit Image</label>
+                  <input
+                    type="text"
+                    class="form-control shadow-none"
+                    placeholder="not available yet"
+                    readonly
+                    id=""
+                  />
                 </div>
                 <div class="mb-3">
-                  <label for="" class="form-label">Date Of Crossing</label>
-                  <input type="date" class="form-control shadow-none" id="" />
+                  <label for="" class="form-label text-white">Date Of Crossing</label>
+                  <input
+                    type="date"
+                    class="form-control shadow-none"
+                    id=""
+                    v-model="reminderDetails.rabbitDate"
+                  />
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  @click="getReminderDetails()"
+                >
+                  Submit
+                </button>
               </form>
             </div>
           </div>
           <div class="col-md-6 mb-3 ps-3">
-            <div class="mt-3 alert alert-success d-flex align-items-center" role="alert">
-              <div>
-                <i class="bi bi-calendar2-check-fill"></i> You've crossed your Rabbit on
-                <b>20th January, 2033</b> a reminder will be set to check if the crossing
-                is successfull or not
+            <div
+              class="mt-3 alert alert-dismissible fade show alert-success d-flex flex-column"
+              role="alert"
+            >
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+              <div><i class="bi bi-bell-fill"></i> &nbsp; Rabbit Notification Center</div>
+              <div v-if="rabbitDateInfo" class="mt-2">
+                <i class="bi bi-calendar2-check-fill"></i> You've crossed your Rabbit
+                named <b>{{ rabbitNameDisplay }}</b> on <b>{{ rabbitDateInfo }}</b> a
+                reminder will be set to check if the crossing is successfull or not
+              </div>
+            </div>
+            <div class="reminder-wrapper mt-5">
+              <form method="post">
+                <div class="mb-3">
+                  <label for="" class="form-label text-white">Kindled Date</label>
+                  <input
+                    type="date"
+                    class="form-control shadow-none"
+                    id=""
+                    v-model="reminderDetails.rabbitKindledDate"
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  @click="calculateBunnyAge()"
+                >
+                  Kindled Successfully
+                </button>
+              </form>
+
+              <div
+                class="mt-3 alert alert-dismissible fade show alert-success d-flex flex-column"
+                role="alert"
+              >
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+                <div>
+                  <i class="bi bi-bell-fill"></i> &nbsp; Rabbit Notification Center
+                </div>
+                <div v-if="after30Days" class="mt-2">
+                  <i class="bi bi-calendar2-check-fill"></i> Your Bunny is 1day today
+                </div>
               </div>
             </div>
           </div>
@@ -87,7 +153,42 @@ export default {
   data() {
     return {
       rabbitGestationImg: "/img/rabbit-gestation.jpg",
+      reminderDetails: {
+        rabbitName: "",
+        // rabbitImage: "",
+        rabbitDate: "",
+        rabbitKindledDate: "",
+      },
+      rabbitDateInfo: "",
+      rabbitNameDisplay: "",
+      after30Days: "",
     };
+  },
+  setup() {
+    // let currentDate = new Date();
+    //   console.log(currentDate);
+    //   let dateNow = currentDate.getDate();
+    //   console.log(dateNow);
+    //   let threeDaysTime = currentDate.setDate(dateNow + 30);
+    //   let newDateNow = new Date(threeDaysTime);
+    //   console.log(newDateNow);
+  },
+  methods: {
+    getReminderDetails() {
+      console.log(this.reminderDetails);
+      this.rabbitDateInfo = this.reminderDetails.rabbitDate;
+      this.rabbitNameDisplay = this.reminderDetails.rabbitName;
+    },
+    calculateBunnyAge() {
+      let currentDate = new Date(this.reminderDetails.rabbitKindledDate);
+      console.log(currentDate);
+      let dateNow = currentDate.getDate();
+      console.log(dateNow);
+      let threeDaysTime = currentDate.setDate(dateNow + 1);
+      let newDateNow = new Date(threeDaysTime);
+      this.after30days = newDateNow;
+      // console.log(newDateNow);
+    },
   },
 };
 </script>

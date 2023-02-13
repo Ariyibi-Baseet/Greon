@@ -38,7 +38,8 @@
             </span>
             <p class="mt-3 text-center">
               <router-link to="/" class="back-home-link"
-                ><i class="bi bi-arrow-left"></i> &nbsp;Go back Home</router-link
+                ><i class="bi bi-arrow-left"></i> &nbsp;Go back
+                Home</router-link
               >
             </p>
           </form>
@@ -51,40 +52,34 @@
 <script>
 import axios from "axios";
 import { useToast } from "vue-toastification";
+import { ref } from "vue";
 
 export default {
   name: "LoginView",
-  data() {
-    return {
-      formData: {
-        email: "",
-        password: "",
-      },
-      api_url: "https://event-api.mockup.com.ng/api/signin",
-      errorMessage: "",
-    };
-  },
   setup() {
+    const formData = ref({ email: "", password: "" });
     const toastBox = useToast();
-    return { toastBox };
-  },
-  methods: {
-    loginForm() {
+    const api_url = "https://event-api.mockup.com.ng/api/signin";
+    let errorMessage = "";
+
+    function loginForm() {
       axios
-        .post(this.api_url, this.formData)
+        .post(api_url, formData.value)
         .then((response) => {
           console.log(response.status);
-          this.toastBox.info("Login Successfully! Proceed to Dashboard");
+          toastBox.info("Login Successfully! Proceed to Dashboard");
           window.location.href = "/";
         })
         .catch((error) => {
           console.log(error);
           if (error.response.status === 401) {
-            this.errorMessage = error.response.data.message;
-            this.toastBox.error(this.errorMessage + " Check your username and password");
+            errorMessage = error.response.data.message;
+            toastBox.error(errorMessage + " Check your username and password");
           }
         });
-    },
+    }
+
+    return { toastBox, loginForm, formData, api_url, errorMessage };
   },
 };
 </script>

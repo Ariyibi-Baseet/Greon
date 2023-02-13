@@ -1,7 +1,9 @@
 <template>
   <div class="register-area">
     <div class="container p-5">
-      <h2 class="text-center text-white">Join Us today to Enjoy Rabbits 🐇 Benefits</h2>
+      <h2 class="text-center text-white">
+        Join Us today to Enjoy Rabbits 🐇 Benefits
+      </h2>
       <div class="row">
         <div class="col-md-4 mx-auto mt-5 mb-3">
           <form method="post">
@@ -56,7 +58,8 @@
             </span>
             <p class="mt-3 text-center">
               <router-link to="/" class="back-home-link"
-                ><i class="bi bi-arrow-left"></i> &nbsp;Go back Home</router-link
+                ><i class="bi bi-arrow-left"></i> &nbsp;Go back
+                Home</router-link
               >
             </p>
           </form>
@@ -69,45 +72,42 @@
 <script>
 import axios from "axios";
 import { useToast } from "vue-toastification";
+import { ref } from "vue";
 
 export default {
   name: "RegisterView",
-  data() {
-    return {
-      formData: {
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: "",
-        password_confirmation: "",
-      },
-      errorMessage: "",
-      successMessage: "",
-      api_url: "https://event-api.mockup.com.ng/api/register",
-    };
-  },
   setup() {
     const toastBox = useToast();
-    return { toastBox };
-  },
-  methods: {
-    registerForm() {
+    const formData = ref({
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+    });
+    let errorMessage = "";
+    let successMessage = "";
+    const api_url = "https://event-api.mockup.com.ng/api/register";
+
+    function registerForm() {
       axios
-        .post(this.api_url, this.formData)
+        .post(api_url, formData.value)
         .then((response) => {
           console.log(response.status);
           if (response.status === 201) {
-            this.toastBox.info("User Registered Successfully!!!");
-            window.location.href = "/";
+            toastBox.info("User Registered Successfully!!!");
+            // window.location.href = "/";
           }
         })
         .catch((error) => {
           if (error.response.status === 422) {
-            this.errorMessage = error.response.data.message;
-            this.toastBox.error(this.errorMessage);
+            errorMessage = error.response.data.message;
+            toastBox.error(errorMessage);
           }
         });
-    },
+    }
+
+    return { toastBox, errorMessage, successMessage, formData, registerForm };
   },
 };
 </script>

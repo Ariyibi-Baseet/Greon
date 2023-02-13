@@ -1,9 +1,13 @@
 <template>
   <div class="not-found-wrapper">
-    <div class="container not-found d-flex justify-content-center align-items-center">
+    <div
+      class="container not-found d-flex justify-content-center align-items-center"
+    >
       <div class="img-wrapper">
         <img :src="notFoundImage" alt="" class="not-found-image" />
-        <h2 class="text-center mt-5 broken-text-head fw-bold">Oops! 🤔 Broken Link</h2>
+        <h2 class="text-center mt-5 broken-text-head fw-bold">
+          Oops! 🤔 Broken Link
+        </h2>
         <router-link
           to="/"
           class="text-decoration-none text-center mt-5 mb-3 d-block fw-bold p-2 bk-btn"
@@ -17,9 +21,11 @@
 <script>
 export default {
   name: "NotFoundView",
-  data() {
+  setup() {
+    const notFoundImage = "/img/notFound_.svg";
+
     return {
-      notFoundImage: "/img/notFound_.svg",
+      notFoundImage,
     };
   },
 };

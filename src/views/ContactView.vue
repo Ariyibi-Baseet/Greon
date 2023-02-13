@@ -7,9 +7,11 @@
 <script>
 export default {
   name: "ContactView",
-  data() {
+  setup() {
+    const name = "Ariyibi Baseet";
+
     return {
-      name: "Ariyibi Baseet",
+      name,
     };
   },
 };

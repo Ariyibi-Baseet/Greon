@@ -1,34 +1,21 @@
 <template>
-  <div class="register-area">
+  <div class="sign-in-area">
     <div class="container p-5">
-      <h2 class="text-center text-white">
-        Join Us today to Enjoy Rabbits 🐇 Benefits
-      </h2>
       <div class="row">
-        <div class="col-md-4 mx-auto mt-5 mb-3">
-          <form method="post">
-            <h5 class="register">Register</h5>
+        <h3 class="text-white text-center">
+          Sign In Here to Proceed to Our
+          <br />
+          Awesome Rabbit 🐇 Dashboard <i class="bi bi-speedometer2"></i>
+        </h3>
+        <div class="col-md-4 mx-auto">
+          <form method="post" class="mt-5 p-3">
+            <h5 class="sign-in">Sign In</h5>
             <div class="mb-3 mt-3">
-              <label for="" class="form-label">First Name</label>
-              <input
-                type="text"
-                class="form-control shadow-none"
-                v-model="formData.first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Last Name</label>
-              <input
-                type="text"
-                class="form-control shadow-none"
-                v-model="formData.last_name"
-              />
-            </div>
-            <div class="mb-3">
               <label for="" class="form-label">Email Address</label>
               <input
                 type="email"
                 class="form-control shadow-none"
+                id=""
                 v-model="formData.email"
               />
             </div>
@@ -37,23 +24,16 @@
               <input
                 type="password"
                 class="form-control shadow-none"
+                id=""
                 v-model="formData.password"
               />
             </div>
-            <div class="mb-3">
-              <label for="" class="form-label">Confirm Password</label>
-              <input
-                type="password"
-                class="form-control shadow-none"
-                v-model="formData.password_confirmation"
-              />
-            </div>
-            <button type="button" class="btn btn-block" @click="registerForm()">
-              Got Me Registered
+            <button type="button" class="btn btn-block" @click="loginForm()">
+              Got Me In
             </button>
             <span>
-              <router-link to="/login" class="login-link ms-3"
-                >Login Here &nbsp;<i class="bi bi-arrow-right"></i
+              <router-link to="/register" class="login-link ms-3"
+                >Register Here &nbsp;<i class="bi bi-arrow-right"></i
               ></router-link>
             </span>
             <p class="mt-3 text-center">
@@ -75,39 +55,31 @@ import { useToast } from "vue-toastification";
 import { ref } from "vue";
 
 export default {
-  name: "RegisterView",
+  name: "Login",
   setup() {
+    const formData = ref({ email: "", password: "" });
     const toastBox = useToast();
-    const formData = ref({
-      first_name: "",
-      last_name: "",
-      email: "",
-      password: "",
-      password_confirmation: "",
-    });
+    const api_url = "https://event-api.mockup.com.ng/api/signin";
     let errorMessage = "";
-    let successMessage = "";
-    const api_url = "https://event-api.mockup.com.ng/api/register";
 
-    function registerForm() {
+    function loginForm() {
       axios
         .post(api_url, formData.value)
         .then((response) => {
           console.log(response.status);
-          if (response.status === 201) {
-            toastBox.info("User Registered Successfully!!!");
-            // window.location.href = "/";
-          }
+          toastBox.info("Login Successfully! Proceed to Dashboard");
+          window.location.href = "/";
         })
         .catch((error) => {
-          if (error.response.status === 422) {
+          console.log(error);
+          if (error.response.status === 401) {
             errorMessage = error.response.data.message;
-            toastBox.error(errorMessage);
+            toastBox.error(errorMessage + " Check your username and password");
           }
         });
     }
 
-    return { toastBox, errorMessage, successMessage, formData, registerForm };
+    return { toastBox, loginForm, formData, api_url, errorMessage };
   },
 };
 </script>
@@ -118,12 +90,12 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
 }
-
-.register-area {
+.sign-in-area {
   background-color: var(--phthalo-green) !important;
   background-color: #333;
+  min-height: 100vh;
 }
-.register {
+.sign-in {
   color: #9efd38;
 }
 label {
@@ -150,23 +122,5 @@ button {
 }
 .back-home-link {
   color: #9efd38;
-}
-.toast {
-  display: block;
-  right: 4px;
-  top: 100px;
-}
-.error-header {
-  background-color: rgb(221, 37, 37);
-}
-.error-body {
-  background-color: rgb(227, 55, 55);
-}
-
-.success-header {
-  background-color: #2ba72b;
-}
-.success-body {
-  background-color: #9efd38;
 }
 </style>

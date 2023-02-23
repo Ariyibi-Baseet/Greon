@@ -8,7 +8,7 @@ import NavigationBar from "@/components/Navbar.vue";
 import FooterSection from "@/components/Footer.vue";
 
 export default {
-  name: "HomeView",
+  name: "Home",
   components: { NavigationBar, FooterSection },
 };
 </script>
